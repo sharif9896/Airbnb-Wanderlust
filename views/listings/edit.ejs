@@ -1,0 +1,92 @@
+<% layout("/layouts/boilerplate") -%>
+  <body>
+    <center><h3 class="col-8">Create New Listing</h3></center>
+    <div class="row">
+      <div class="col-8 offset-2">
+        <form method="post" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label for="title">Title</label>
+            <input required
+              type="text"
+              name="listing[title]"
+              value="<%= listing.title %>"
+              class="form-control"
+            />
+    <div class="valid-feedback">Title Looks Good</div>
+          </div>
+          <div class="mb-3">
+            <label for="description">Description</label>
+            <textarea required name="listing[description]" class="form-control">
+<%= listing.description %></textarea
+            >
+    <div class="invalid-feedback">Please Enter Short Description</div>
+          </div>
+          <div class="mb-3">
+            <label for="image">Image</label>
+            <input required
+              type="text"
+              name="listing[image]"
+              value="<%= listing.image %>"
+              class="form-control"
+            />
+
+          </div>
+          <div class="row">
+            <div class="mb-3 col-4">
+              <label for="price">Price</label>
+              <input required
+                type="number"
+                name="listing[price]"
+                value="<%= listing.price %>"
+                class="form-control"
+              />
+    <div class="invalid-feedback">Please Enter Price</div>
+            </div>
+            <div class="mb-3 col-8">
+              <label for="country">Country</label>
+              <input required
+                type="text"
+                name="listing[country]"
+                class="form-control"
+                value="<%= listing.country %>"
+              />
+    <div class="invalid-feedback">Please Enter Country</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="location">Location</label>
+            <input required
+              type="text"
+              name="listing[location]"
+              class="form-control"
+              value="<%= listing.location %>"
+            />
+    <div class="invalid-feedback">Please Enter Location</div>
+          </div>
+          <button class="btn btn-dark add-btn">Edit</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+
+    </script>
+  </body>
+</html>
